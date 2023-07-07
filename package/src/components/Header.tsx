@@ -63,7 +63,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
       </Grid>
 
 
-        <Grid item sx={{border: '1px solid #eeeeee'}}>
+        <Grid item>
           <FormControl variant="standard" sx={{border: 'none'}}>
             <Select
               value={getYear(date)}
