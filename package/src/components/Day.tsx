@@ -14,16 +14,16 @@ interface DayProps {
 }
 
 const Day: React.FunctionComponent<DayProps> = ({
-  startOfRange,
-  endOfRange,
-  disabled,
-  highlighted,
-  outlined,
-  filled,
-  onClick,
-  onHover,
-  value,
-}: DayProps) => {
+                                                  startOfRange,
+                                                  endOfRange,
+                                                  disabled,
+                                                  highlighted,
+                                                  outlined,
+                                                  filled,
+                                                  onClick,
+                                                  onHover,
+                                                  value,
+                                                }: DayProps) => {
 
   return (
     <Box
@@ -31,7 +31,7 @@ const Day: React.FunctionComponent<DayProps> = ({
         display: 'flex',
         // eslint-disable-next-line no-nested-ternary
         borderRadius: startOfRange ? '50% 0 0 50%' : endOfRange ? '0 50% 50% 0' : undefined,
-        backgroundColor: (theme) => !disabled && highlighted ? theme.palette.primary.light : undefined,
+        backgroundColor: (theme) => !disabled && highlighted ? theme.palette.primary.light : disabled ? '#BDBDBD' : 'transparent',
       }}
     >
       <IconButton
@@ -57,7 +57,7 @@ const Day: React.FunctionComponent<DayProps> = ({
             lineHeight: 1.6,
             color: (theme) => !disabled
               ? (filled ? theme.palette.primary.contrastText : theme.palette.text.primary)
-              : theme.palette.text.secondary,
+              : '#E3E3E3',
           }}
           variant="body2"
         >

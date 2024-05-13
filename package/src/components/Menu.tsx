@@ -1,7 +1,7 @@
 /* eslint-disable object-curly-newline */
 import React from 'react';
 import { Divider, Grid, Paper, Typography } from '@mui/material';
-import {differenceInCalendarMonths, format} from 'date-fns';
+import { differenceInCalendarMonths, format } from 'date-fns';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import Month from './Month';
 import DefinedRanges from './DefinedRanges';
@@ -51,7 +51,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
     setDateRange,
     helpers,
     handlers,
-    locale
+    locale,
   } = props;
 
   const { startDate, endDate } = dateRange;
@@ -69,12 +69,12 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
             setRange={setDateRange}
           />
         </Grid>
-        <Divider orientation="vertical" flexItem/>
+        <Divider orientation="vertical" flexItem />
         <Grid>
           <Grid container sx={{ padding: '20px 70px' }} alignItems="center">
             <Grid item sx={{ flex: 1, textAlign: 'center' }}>
               <Typography variant="h6">
-                {startDate ? format(startDate, 'yyyy/MM/dd', {locale}) : 'Start Date'}
+                {startDate ? format(startDate, 'yyyy/MM/dd', { locale }) : 'Start Date'}
               </Typography>
             </Grid>
             <Grid item sx={{ flex: 1, textAlign: 'center' }}>
@@ -82,7 +82,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
             </Grid>
             <Grid item sx={{ flex: 1, textAlign: 'center' }}>
               <Typography variant="h6">
-                {endDate ? format(endDate, 'yyyy/MM/dd', {locale}) : 'End Date'}
+                {endDate ? format(endDate, 'yyyy/MM/dd', { locale }) : 'End Date'}
               </Typography>
             </Grid>
           </Grid>
@@ -92,16 +92,16 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
               {...commonProps}
               value={firstMonth}
               setValue={setFirstMonth}
-              navState={[true, canNavigateCloser]}
+              navState={[minDate.getMonth() < firstMonth.getMonth(), canNavigateCloser]}
               marker={MARKERS.FIRST_MONTH}
               locale={locale}
             />
-            <Divider orientation="vertical" flexItem/>
+            <Divider orientation="vertical" flexItem />
             <Month
               {...commonProps}
               value={secondMonth}
               setValue={setSecondMonth}
-              navState={[canNavigateCloser, true]}
+              navState={[canNavigateCloser, maxDate.getMonth() > secondMonth.getMonth()]}
               marker={MARKERS.SECOND_MONTH}
               locale={locale}
             />
