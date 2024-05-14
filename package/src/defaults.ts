@@ -6,6 +6,7 @@ import {
   startOfMonth,
   endOfMonth,
   addMonths, startOfYear, endOfYear, addYears,
+  Locale
 } from 'date-fns';
 
 // eslint-disable-next-line no-unused-vars

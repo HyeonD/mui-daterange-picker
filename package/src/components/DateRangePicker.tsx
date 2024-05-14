@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  addMonths, addYears, isAfter, isBefore, isSameDay, isSameMonth, isWithinInterval, max, min,
+  addMonths, addYears, isAfter, isBefore, isSameDay, isSameMonth, isWithinInterval, max, min, Locale
 } from 'date-fns';
 import { DateRange, DefinedRange, NavigationAction } from '../types';
 import { getValidatedMonths, parseOptionalDate } from '../utils';

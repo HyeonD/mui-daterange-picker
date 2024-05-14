@@ -25,7 +25,7 @@ export default {
       sourcemap: true,
     },
   ],
-  external: [/@babel\/runtime/],
+  external: [/@babel\/runtime/, /styled-components/, /@emotion\/react/],
   plugins: [
     external(),
     url({ exclude: ['**/*.svg'] }),

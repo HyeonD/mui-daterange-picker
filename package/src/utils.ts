@@ -13,6 +13,7 @@ import {
   isValid,
   min,
   max,
+  Locale
 } from 'date-fns';
 import { DateRange } from './types';
 

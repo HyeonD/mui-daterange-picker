@@ -1,5 +1,5 @@
 import React from 'react';
-import {List, ListItem, ListItemText} from '@mui/material';
+import { List, ListItem, ListItemText, Theme } from '@mui/material';
 import {isSameDay} from 'date-fns';
 import {DateRange, DefinedRange} from '../types';
 
@@ -31,7 +31,7 @@ const DefinedRanges: React.FunctionComponent<DefinedRangesProps> = ({
                 onClick={() => setRange(range)}
                 sx={[
                   isSameRange(range, selectedRange) && {
-                    backgroundColor: (theme) => theme.palette.primary.dark,
+                    backgroundColor: (theme: Theme) => theme.palette.primary.dark,
                     color: 'primary.contrastText',
                     '&:hover': {
                       color: 'inherit'

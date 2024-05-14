@@ -1,7 +1,7 @@
 /* eslint-disable object-curly-newline */
 import React from 'react';
 import { Divider, Grid, Paper, Typography } from '@mui/material';
-import { differenceInCalendarMonths, format } from 'date-fns';
+import { differenceInCalendarMonths, format, Locale } from 'date-fns';
 import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import Month from './Month';
 import DefinedRanges from './DefinedRanges';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, Typography, Box } from '@mui/material';
+import { IconButton, Typography, Box, Theme } from '@mui/material';
 
 interface DayProps {
   filled?: boolean;
@@ -11,6 +11,7 @@ interface DayProps {
   onClick?: () => void;
   onHover?: () => void;
   value: number | string;
+  day: number;
 }
 
 const Day: React.FunctionComponent<DayProps> = ({
@@ -23,6 +24,7 @@ const Day: React.FunctionComponent<DayProps> = ({
                                                   onClick,
                                                   onHover,
                                                   value,
+                                                  day,
                                                 }: DayProps) => {
 
   return (
@@ -30,8 +32,8 @@ const Day: React.FunctionComponent<DayProps> = ({
       sx={{
         display: 'flex',
         // eslint-disable-next-line no-nested-ternary
-        borderRadius: startOfRange ? '50% 0 0 50%' : endOfRange ? '0 50% 50% 0' : undefined,
-        backgroundColor: (theme) => !disabled && highlighted ? theme.palette.primary.light : disabled ? '#F7F7F7' : 'transparent',
+        borderRadius: startOfRange || (highlighted && day === 0) ? '50% 0 0 50%' : endOfRange || (highlighted && day === 6) ? '0 50% 50% 0' : undefined,
+        backgroundColor: (theme:Theme) => !disabled && highlighted ? theme.palette.primary.light : disabled ? '#F7F7F7' : 'transparent',
       }}
     >
       <IconButton
@@ -39,12 +41,12 @@ const Day: React.FunctionComponent<DayProps> = ({
           height: '36px',
           width: '36px',
           padding: 0,
-          border: (theme) => !disabled && outlined ? `1px solid ${theme.palette.primary.dark}` : undefined,
+          border: (theme:Theme) => !disabled && outlined ? `1px solid ${theme.palette.primary.dark}` : undefined,
           ...(!disabled && filled ? {
             '&:hover': {
-              backgroundColor: (theme) => theme.palette.primary.dark,
+              backgroundColor: (theme:Theme) => theme.palette.primary.dark,
             },
-            backgroundColor: (theme) => theme.palette.primary.dark,
+            backgroundColor: (theme:Theme) => theme.palette.primary.dark,
           } : {}),
         }}
         disabled={disabled}
@@ -55,7 +57,7 @@ const Day: React.FunctionComponent<DayProps> = ({
         <Typography
           sx={{
             lineHeight: 1.6,
-            color: (theme) => !disabled
+            color: (theme:Theme) => !disabled
               ? (filled ? theme.palette.primary.contrastText : theme.palette.text.primary)
               : '#BCBCBC',
           }}
