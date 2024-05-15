@@ -20,10 +20,7 @@ module.exports = {
       },
     },
   },
-  extends: [
-    'plugin:react/recommended',
-    // 'airbnb',
-  ],
+  extends: ['plugin:react/recommended', 'plugin:storybook/recommended'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',

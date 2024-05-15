@@ -61,33 +61,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
   };
   return (
     <Paper elevation={5} square>
-      <Grid container direction="row" wrap="nowrap">
-        <Grid>
-          <DefinedRanges
-            selectedRange={dateRange}
-            ranges={ranges}
-            setRange={setDateRange}
-          />
-        </Grid>
-        <Divider orientation="vertical" flexItem />
-        <Grid>
-          <Grid container sx={{ padding: '20px 70px' }} alignItems="center">
-            <Grid item sx={{ flex: 1, textAlign: 'center' }}>
-              <Typography variant="h6">
-                {startDate ? format(startDate, 'yyyy/MM/dd', { locale }) : 'Start Date'}
-              </Typography>
-            </Grid>
-            <Grid item sx={{ flex: 1, textAlign: 'center' }}>
-              <ArrowRightAlt color="action" />
-            </Grid>
-            <Grid item sx={{ flex: 1, textAlign: 'center' }}>
-              <Typography variant="h6">
-                {endDate ? format(endDate, 'yyyy/MM/dd', { locale }) : 'End Date'}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Divider />
-          <Grid container direction="row" justifyContent="center" wrap="nowrap">
+      <Grid container direction="row" justifyContent="center" wrap="nowrap">
             <Month
               {...commonProps}
               value={firstMonth}
@@ -96,7 +70,6 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
               marker={MARKERS.FIRST_MONTH}
               locale={locale}
             />
-            <Divider orientation="vertical" flexItem />
             <Month
               {...commonProps}
               value={secondMonth}
@@ -106,8 +79,6 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
               locale={locale}
             />
           </Grid>
-        </Grid>
-      </Grid>
     </Paper>
   );
 };

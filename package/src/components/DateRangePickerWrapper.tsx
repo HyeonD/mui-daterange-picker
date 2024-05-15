@@ -5,6 +5,7 @@ import DateRangePicker from './DateRangePicker';
 
 // eslint-disable-next-line no-unused-vars
 import { DateRange, DefinedRange } from '../types';
+import {Locale} from "date-fns";
 
 export interface DateRangePickerWrapperProps {
   open: boolean;
