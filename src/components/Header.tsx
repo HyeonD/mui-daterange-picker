@@ -66,27 +66,6 @@ const Header: React.FunctionComponent<HeaderProps> = ({
         <Grid item>
           <FormControl variant="standard" sx={{border: 'none'}}>
             <Select
-              value={getYear(date)}
-              onChange={handleYearChange}
-              MenuProps={{disablePortal: true}}
-              sx={{
-                border: 'none',
-                "& .MuiSvgIcon-root": {
-                  display: 'none'
-                }
-              }}
-              autoWidth={true}
-              disableUnderline={true}
-            >
-              {generateYears(date, 10).map((year) => (
-                <MenuItem key={year} value={year}>
-                  {year}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl variant="standard" sx={{border: 'none'}}>
-            <Select
               value={getMonth(date)}
               onChange={handleMonthChange}
               MenuProps={{disablePortal: true}}
@@ -106,6 +85,28 @@ const Header: React.FunctionComponent<HeaderProps> = ({
               ))}
             </Select>
           </FormControl>
+          <FormControl variant="standard" sx={{border: 'none'}}>
+            <Select
+              value={getYear(date)}
+              onChange={handleYearChange}
+              MenuProps={{disablePortal: true}}
+              sx={{
+                border: 'none',
+                "& .MuiSvgIcon-root": {
+                  display: 'none'
+                }
+              }}
+              autoWidth={true}
+              disableUnderline={true}
+            >
+              {generateYears(date, 10).map((year) => (
+                <MenuItem key={year} value={year}>
+                  {year}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
         </Grid>
         {/*<Grid item>*/}
 

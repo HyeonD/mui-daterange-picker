@@ -1,9 +1,12 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
-import { Box, Button, Fade, Menu, MenuItem, MenuList } from "@mui/material";
-import { DateRange, DefinedRange } from "../types";
-import { Locale } from "date-fns";
-import { DateRangePicker } from "../index";
-import { getDefaultRanges } from "../defaults";
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import { Box, Button, Fade, Menu, MenuItem, MenuList } from '@mui/material';
+import { DateRange, DefinedRange } from '../types';
+import { format, Locale } from 'date-fns';
+import { DateRangePicker } from '../index';
+import { getDefaultRanges } from '../defaults';
+// import { ColorBoxIcon } from './Icon/ColorBoxIcon';
+import { CalendarIcon } from './Icon/CalendarIcon';
+import { ExpandMoreIcon } from './Icon/ExpandMoreIcon';
 
 interface DateRangePickerButtonProps {
   open: boolean;
@@ -18,21 +21,25 @@ interface DateRangePickerButtonProps {
 
 const DateRangePickerButton: FunctionComponent<DateRangePickerButtonProps> = (props: DateRangePickerButtonProps) => {
   const dateButtonStyles = {
-    color: "default.gray13",
-    border: "1px solid #CFD1D8",
-    borderRadius: "8px",
+    color: 'default.gray13',
+    border: '1px solid #CFD1D8',
+    borderRadius: '8px',
     height: 40,
-    "&.MuiButtonBase-root:hover": {
-      color: "default.gray13",
-      borderColor: "#CFD1D8",
-      bgcolor: "#F3F4F6",
+    '&.MuiButtonBase-root:hover': {
+      color: 'default.gray13',
+      borderColor: '#CFD1D8',
+      bgcolor: '#F3F4F6',
     },
   };
 
   const [open, setOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorEl);
-  const [dateRange, setDateRange] = useState<DateRange>({ ...props.initialDateRange });
+  const [dateRange, setDateRange] = useState<DateRange>(props.initialDateRange
+    ? props.initialDateRange : {
+      startDate: new Date(),
+      endDate: new Date(),
+    });
   const [definedRanges, setDefinedRanges] = useState<DefinedRange[] | undefined>(props.definedRanges);
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -51,29 +58,32 @@ const DateRangePickerButton: FunctionComponent<DateRangePickerButtonProps> = (pr
       setDefinedRanges(getDefaultRanges(new Date()));
     }
   }, [props.initialDateRange, props.definedRanges]);
+
   return (
     <React.Fragment>
       <Box>
         <Button
           fullWidth={true}
-          variant={"outlined"}
+          variant={'outlined'}
           disableElevation
           disableRipple
           sx={dateButtonStyles}
           onClick={handleButtonClick}
           id="datepicker-button"
-          aria-controls={openMenu ? "datepicker-menu" : undefined}
+          aria-controls={openMenu ? 'datepicker-menu' : undefined}
           aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
-          // startIcon={compare ? <ColorBoxIcon fill={color} /> : <CalendarIcon />}
-          // endIcon={<ExpandMoreIcon />}
+          aria-expanded={open ? 'true' : undefined}
+          startIcon={
+            // compare ? <ColorBoxIcon fill={color} /> :
+            <CalendarIcon />}
+          endIcon={<ExpandMoreIcon />}
         >
-          {`${dateRange.startDate} - ${dateRange.endDate}`}
+          {`${format(dateRange.startDate, 'yyyy.MM.dd')} - ${format(dateRange.endDate, 'yyyy.MM.dd')}`}
         </Button>
         <Menu
           id="datepicker-menu"
-          MenuListProps={{ "aria-labelledby": "datepicker-button" }}
-          slotProps={{ paper: { style: { width: "100%" } } }}
+          MenuListProps={{ 'aria-labelledby': 'datepicker-button' }}
+          slotProps={{ paper: { style: { width: '100%' } } }}
           anchorEl={anchorEl}
           open={openMenu}
           onClose={handleMenuClose}
@@ -82,15 +92,15 @@ const DateRangePickerButton: FunctionComponent<DateRangePickerButtonProps> = (pr
           <MenuList>
             {definedRanges &&
               definedRanges.map((range) => {
-                <MenuItem
+                return (<MenuItem
                   key={range.label}
                   onClick={() => {
-                    setOpen(!open);
+                    setDateRange({ startDate: range.startDate, endDate: range.endDate });
                     handleMenuClose();
                   }}
                 >
                   {range.label}
-                </MenuItem>;
+                </MenuItem>);
               })}
           </MenuList>
           <MenuList>
@@ -106,11 +116,14 @@ const DateRangePickerButton: FunctionComponent<DateRangePickerButtonProps> = (pr
         </Menu>
       </Box>
       <DateRangePicker
-        toggle={function (): void {
-          throw new Error("Function not implemented.");
+        toggle={function(): void {
+          throw new Error('Function not implemented.');
         }}
         open={open}
-        onChange={props.onChange}
+        onChange={(dateRange) => {
+          setDateRange(dateRange);
+          setOpen(false);
+        }}
       />
     </React.Fragment>
   );

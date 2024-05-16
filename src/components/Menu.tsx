@@ -1,10 +1,9 @@
 /* eslint-disable object-curly-newline */
 import React from 'react';
-import { Divider, Grid, Paper, Typography } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import { differenceInCalendarMonths, format, Locale } from 'date-fns';
-import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import Month from './Month';
-import DefinedRanges from './DefinedRanges';
+
 import {
   DateRange,
   DefinedRange,
@@ -62,23 +61,23 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
   return (
     <Paper elevation={5} square>
       <Grid container direction="row" justifyContent="center" wrap="nowrap">
-            <Month
-              {...commonProps}
-              value={firstMonth}
-              setValue={setFirstMonth}
-              navState={[minDate.getMonth() < firstMonth.getMonth(), canNavigateCloser]}
-              marker={MARKERS.FIRST_MONTH}
-              locale={locale}
-            />
-            <Month
-              {...commonProps}
-              value={secondMonth}
-              setValue={setSecondMonth}
-              navState={[canNavigateCloser, maxDate.getMonth() > secondMonth.getMonth()]}
-              marker={MARKERS.SECOND_MONTH}
-              locale={locale}
-            />
-          </Grid>
+        <Month
+          {...commonProps}
+          value={firstMonth}
+          setValue={setFirstMonth}
+          navState={[minDate.getMonth() < firstMonth.getMonth(), canNavigateCloser]}
+          marker={MARKERS.FIRST_MONTH}
+          locale={locale}
+        />
+        <Month
+          {...commonProps}
+          value={secondMonth}
+          setValue={setSecondMonth}
+          navState={[canNavigateCloser, maxDate.getMonth() > secondMonth.getMonth()]}
+          marker={MARKERS.SECOND_MONTH}
+          locale={locale}
+        />
+      </Grid>
     </Paper>
   );
 };

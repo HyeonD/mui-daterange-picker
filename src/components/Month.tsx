@@ -111,7 +111,7 @@ const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
                 const isRangeOneDay = isRangeSameDay(dateRange);
                 const highlighted = inDateRange(dateRange, day) || helpers.inHoverRange(day);
 
-                return (
+                return date.getMonth() === day.getMonth() ? (
                   <DayComponent
                     key={format(day, 'dd-MM-yyyy')}
                     filled={isStart || isEnd}
@@ -128,7 +128,7 @@ const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
                     value={getDate(day)}
                     day={getDay(day)}
                   />
-                );
+                ) : <></>;
               })}
             </Grid>
           ))}

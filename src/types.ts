@@ -1,8 +1,8 @@
 import React from 'react';
 
 export interface DateRange {
-  startDate?: Date;
-  endDate?: Date;
+  startDate: Date|number|string;
+  endDate: Date|number|string;
 }
 
 // eslint-disable-next-line no-unused-vars

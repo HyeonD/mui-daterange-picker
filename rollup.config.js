@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
+import * as svgr from '@svgr/rollup';
 
 import pkg from './package.json';
 
@@ -27,6 +28,7 @@ export default {
   ],
   external: [/@babel\/runtime/, /styled-components/, /@emotion\/react/],
   plugins: [
+    svgr(),
     external(),
     url({ exclude: ['**/*.svg'] }),
     babel({
